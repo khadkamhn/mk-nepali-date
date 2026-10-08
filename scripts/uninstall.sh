@@ -3,11 +3,12 @@
 set -euo pipefail
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
-    printf 'Usage: ./uninstall.sh\n\nUninstalls the Nepali Date GNOME Shell extension (mk-nepali-date@mohankhadka.com.np) for the\ncurrent user: disables and unloads it, removes it from the enabled list, deletes\nits files and resets its settings.\n'
+    printf 'Usage: scripts/uninstall.sh\n\nUninstalls the Nepali Date GNOME Shell extension for the current user: disables\nand unloads it, removes it from the enabled list, deletes its files and resets\nits settings.\n'
     exit 0
 fi
 
-UUID="mk-nepali-date@mohankhadka.com.np"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+UUID="$(sed -n 's/.*"uuid": *"\([^"]*\)".*/\1/p' "$ROOT/src/metadata.json")"
 DEST="$HOME/.local/share/gnome-shell/extensions/$UUID"
 SETTINGS_PATH="/org/gnome/shell/extensions/mk-nepali-date/"
 
