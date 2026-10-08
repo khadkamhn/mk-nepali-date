@@ -53,6 +53,28 @@ export default class NepaliDatePreferences extends ExtensionPreferences {
         ]));
         page.add(placement);
 
+        const desktop = new Adw.PreferencesGroup({title: 'Desktop'});
+        desktop.add(switchRow(settings, 'show-desktop-calendar', 'Show calendar on desktop'));
+        const size = comboRow(settings, 'desktop-size', 'Size', [
+            ['small', 'Small (date only)'],
+            ['medium', 'Medium (date card)'],
+            ['large', 'Large (month calendar)'],
+        ]);
+        settings.bind('show-desktop-calendar', size, 'sensitive', 0);
+        desktop.add(size);
+        const position = new Adw.ActionRow({
+            title: 'Position',
+            subtitle: 'Drag the calendar on the desktop to move it',
+        });
+        const reset = new Gtk.Button({label: 'Reset', valign: Gtk.Align.CENTER});
+        reset.connect('clicked', () => settings.reset('desktop-position'));
+        position.add_suffix(reset);
+        settings.bind('show-desktop-calendar', position, 'sensitive', 0);
+        desktop.add(position);
+        page.add(desktop);
+
         window.add(page);
+        // Tall enough to show every group without scrolling.
+        window.set_default_size(640, 720);
     }
 }

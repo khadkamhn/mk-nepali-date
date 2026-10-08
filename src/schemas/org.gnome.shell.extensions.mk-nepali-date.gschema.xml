@@ -34,5 +34,22 @@
       <default>'right'</default>
       <summary>Where in the top bar to place the date</summary>
     </key>
+    <key name="show-desktop-calendar" type="b">
+      <default>false</default>
+      <summary>Show the month calendar on the desktop</summary>
+    </key>
+    <key name="desktop-size" type="s">
+      <choices>
+        <choice value="small"/>
+        <choice value="medium"/>
+        <choice value="large"/>
+      </choices>
+      <default>'large'</default>
+      <summary>Desktop calendar size: one line, a date card, or the month calendar</summary>
+    </key>
+    <key name="desktop-position" type="(ii)">
+      <default>(-1, -1)</default>
+      <summary>Desktop calendar position in pixels; (-1, -1) means the top-right corner</summary>
+    </key>
   </schema>
 </schemalist>

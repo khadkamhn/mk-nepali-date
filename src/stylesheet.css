@@ -99,3 +99,48 @@
 .nepali-cal-today-button {
   padding: 4px 12px;
 }
+
+/* Desktop card: month calendar (large), date card (medium) or one line (small). */
+.nepali-desktop {
+  background-color: rgba(36, 36, 40, 0.95);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.nepali-desktop-small {
+  padding: 10px 18px;
+  border-radius: 14px;
+}
+
+.nepali-desk-medium {
+  min-width: 190px;
+}
+
+.nepali-desk-weekday {
+  font-size: 1.1em;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.nepali-desk-day {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.nepali-desk-month {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.nepali-desk-ad {
+  font-size: 0.85em;
+  opacity: 0.7;
+  padding-top: 4px;
+}
+
+.nepali-desk-line {
+  font-size: 1.2em;
+  font-weight: bold;
+}

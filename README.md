@@ -2,10 +2,13 @@
 
 Shows today's Bikram Sambat date in the top bar (e.g. `२२ असोज २०८३`). Click it for a
 month calendar with BS days, the matching AD days, Saturdays in red, and month navigation.
+The same calendar can also sit on the desktop; drag it anywhere.
 
 - `src/bs.js` - BS⇄AD conversion (1975–2199 BS). Add rows to `MONTH_LENGTHS` as new official calendars are published.
 - `src/extension.js` - top-bar indicator and calendar popup.
-- `src/prefs.js` - settings: language (नेपाली/English), weekday/year in the top bar, position.
+- `src/calendar.js` - the month calendar, shared by the popup and the desktop.
+- `src/desktop.js` - the draggable desktop calendar.
+- `src/prefs.js` - settings: language (नेपाली/English), weekday/year in the top bar, position, desktop calendar.
 
 Install: `scripts/install.sh`, log out and back in (Wayland), then `gnome-extensions enable mk-nepali-date@mohankhadka.com.np`.
 Settings: `gnome-extensions prefs mk-nepali-date@mohankhadka.com.np`.
@@ -18,6 +21,10 @@ Screenshots: `scripts/screenshots.sh` - regenerates `docs/screenshots/*.png`.
 ![Calendar in Nepali](docs/screenshots/calendar-nepali.png)
 
 ![Calendar in English, with weekday](docs/screenshots/calendar-english.png)
+
+On the desktop:
+
+![Desktop calendar](docs/screenshots/desktop.png)
 
 Settings:
 

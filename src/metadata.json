@@ -1,8 +1,9 @@
 {
   "uuid": "mk-nepali-date@mohankhadka.com.np",
   "name": "Nepali Date",
-  "description": "Shows today's Bikram Sambat (Nepali) date in the top bar, with a month calendar popup.",
+  "description": "Shows today's Bikram Sambat (Nepali) date in the top bar, with a month calendar popup and an optional calendar on the desktop.",
   "shell-version": ["48", "49", "50"],
   "settings-schema": "org.gnome.shell.extensions.mk-nepali-date",
-  "url": "https://github.com/khadkamhn/mk-nepali-date"
+  "url": "https://github.com/khadkamhn/mk-nepali-date",
+  "version-name": "1.1"
 }
