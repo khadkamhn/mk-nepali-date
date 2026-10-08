@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
-    printf 'Usage: scripts/screenshots.sh\n\nStarts a private headless GNOME Shell (stock wallpaper, empty config) with a\ncopy of src/ that opens the calendar and the settings window and saves\nfull-screen screenshots to docs/screenshots/. Your running session and installed extension are untouched.\n'
+    printf 'Usage: scripts/screenshots.sh\n\nStarts a private headless GNOME Shell (stock wallpaper, empty config) with a\ncopy of src/ that opens the calendar, the desktop calendar and the settings\nwindow and saves\nfull-screen screenshots to docs/screenshots/. Your running session and installed extension are untouched.\n'
     exit 0
 fi
 
@@ -21,7 +21,8 @@ cp -r "$ROOT/src"/. "$EXT"/
 glib-compile-schemas "$EXT/schemas"
 
 # Inject a hook into the copy only: open the menu and save screenshots.
-# run.sh opens the settings window ~12s in; the hook shoots it at ~17s.
+# run.sh opens the settings window ~20s in, after the desktop shot; the hook
+# shoots it ~6s later.
 python3 -I - "$EXT/extension.js" "$OUT" <<'EOF'
 import sys
 path, out = sys.argv[1], sys.argv[2]
@@ -43,12 +44,15 @@ hook = '''
                     later(1, () => snap('calendar-english', () => {
                         this._indicator.menu.close(false);
                         this._settings.set_string('language', 'nepali');
-                        later(8, () => snap('prefs'));
+                        this._settings.set_boolean('show-weekday', false);
+                        this._settings.set_boolean('show-desktop-calendar', true);
+                        later(1, () => snap('desktop'));
+                        later(14, () => snap('prefs'));
                     })); });
             }));
         });
 '''.replace('OUT', out)
-anchor = "        this._addIndicator();\n        this._settings.connectObject"
+anchor = "        this._today = null;\n        this._addIndicator();"
 if anchor not in s:
     sys.exit('screenshots.sh: hook point not found in extension.js enable()')
 open(path, 'w').write(s.replace(anchor, hook + anchor, 1))
@@ -58,8 +62,8 @@ cat > "$WORK/run.sh" <<EOF
 #!/bin/bash
 gsettings set org.gnome.shell enabled-extensions "['$UUID']"
 gsettings set org.gnome.shell disable-user-extensions false
-timeout 25 gnome-shell --headless --wayland --no-x11 --virtual-monitor 1920x1080 &
-sleep 12
+timeout 35 gnome-shell --headless --wayland --no-x11 --virtual-monitor 1920x1080 &
+sleep 20
 WAYLAND_DISPLAY=wayland-0 gnome-extensions prefs $UUID
 wait
 EOF
@@ -68,4 +72,4 @@ chmod +x "$WORK/run.sh"
 env -u WAYLAND_DISPLAY -u DISPLAY \
     XDG_CONFIG_HOME="$WORK/cfg" XDG_DATA_HOME="$WORK/data" XDG_RUNTIME_DIR="$RUNTIME" \
     dbus-run-session "$WORK/run.sh" 2>&1 | grep -E 'SHOT|JS ERROR' || true
-ls -la "$OUT"/calendar-*.png "$OUT"/prefs.png
+ls -la "$OUT"/calendar-*.png "$OUT"/desktop.png "$OUT"/prefs.png
