@@ -36,6 +36,12 @@ export default class NepaliDatePreferences extends ExtensionPreferences {
             ['english', 'English'],
         ]));
         display.add(switchRow(settings, 'show-weekday', 'Show weekday in top bar'));
+        const weekdayFormat = comboRow(settings, 'weekday-format', 'Weekday format', [
+            ['short', 'Short (आइत, Thu)'],
+            ['full', 'Full (आइतबार, Thursday)'],
+        ]);
+        settings.bind('show-weekday', weekdayFormat, 'visible', 0);
+        display.add(weekdayFormat);
         display.add(switchRow(settings, 'show-year', 'Show year in top bar'));
         page.add(display);
 

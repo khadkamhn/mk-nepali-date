@@ -139,8 +139,12 @@ class NepaliDateIndicator extends PanelMenu.Button {
         }
 
         const parts = [];
-        if (this._settings.get_boolean('show-weekday'))
-            parts.push(`${(this._nepali ? BS.WEEKDAYS_SHORT_NE : BS.WEEKDAYS_SHORT_EN)[today.weekday]},`);
+        if (this._settings.get_boolean('show-weekday')) {
+            const weekday = this._settings.get_string('weekday-format') === 'full'
+                ? this._weekdayName(today.weekday)
+                : (this._nepali ? BS.WEEKDAYS_SHORT_NE : BS.WEEKDAYS_SHORT_EN)[today.weekday];
+            parts.push(`${weekday},`);
+        }
         parts.push(this._num(today.day), this._monthName(today.month));
         if (this._settings.get_boolean('show-year'))
             parts.push(this._num(today.year));

@@ -13,11 +13,24 @@
   spacing: 6px;
 }
 
-/* Same size as the native calendar's .pager-button; .icon-button makes it round. */
+/* Same size as the native calendar's .pager-button; .icon-button makes it round.
+   Like .pager-button it has no fill at rest, only on hover/press. Extension
+   styles override the theme regardless of specificity, so the states are set
+   here too; the theme's !important focus ring still shows. */
 .nepali-cal-nav {
   width: 2.6em;
   height: 2.6em;
   padding: 0;
+  background-color: transparent;
+}
+
+.nepali-cal-nav:hover,
+.nepali-cal-nav:focus:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nepali-cal-nav:active {
+  background-color: rgba(255, 255, 255, 0.16);
 }
 
 .nepali-cal-title {

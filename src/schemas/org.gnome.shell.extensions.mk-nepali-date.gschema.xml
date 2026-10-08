@@ -13,6 +13,14 @@
       <default>false</default>
       <summary>Show the weekday in the top bar</summary>
     </key>
+    <key name="weekday-format" type="s">
+      <choices>
+        <choice value="short"/>
+        <choice value="full"/>
+      </choices>
+      <default>'short'</default>
+      <summary>Weekday in the top bar: short (आइत, Thu) or full (आइतबार, Thursday)</summary>
+    </key>
     <key name="show-year" type="b">
       <default>true</default>
       <summary>Show the year in the top bar</summary>
