@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.mk-nepali-date" path="/org/gnome/shell/extensions/mk-nepali-date/">
+    <key name="language" type="s">
+      <choices>
+        <choice value="nepali"/>
+        <choice value="english"/>
+      </choices>
+      <default>'nepali'</default>
+      <summary>Language for month names, weekdays and digits</summary>
+    </key>
+    <key name="show-weekday" type="b">
+      <default>false</default>
+      <summary>Show the weekday in the top bar</summary>
+    </key>
+    <key name="show-year" type="b">
+      <default>true</default>
+      <summary>Show the year in the top bar</summary>
+    </key>
+    <key name="panel-position" type="s">
+      <choices>
+        <choice value="left"/>
+        <choice value="center"/>
+        <choice value="right"/>
+      </choices>
+      <default>'right'</default>
+      <summary>Where in the top bar to place the date</summary>
+    </key>
+  </schema>
+</schemalist>
