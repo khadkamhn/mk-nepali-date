@@ -10,4 +10,4 @@ month calendar with BS days, the matching AD days, Saturdays in red, and month n
 Install: `scripts/install.sh`, log out and back in (Wayland), then `gnome-extensions enable mk-nepali-date@mohankhadka.com.np`.
 Settings: `gnome-extensions prefs mk-nepali-date@mohankhadka.com.np`.
 Uninstall: `scripts/uninstall.sh` — unloads it from the top bar right away, removes its files and resets its settings.
-Build: `scripts/build.sh` — writes `dist/mk-nepali-date@mohankhadka.com.np.shell-extension.zip` for upload to extensions.gnome.org.
+Build: `scripts/build.sh` — writes `dist/mk-nepali-date.zip` for upload to extensions.gnome.org.
