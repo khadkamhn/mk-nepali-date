@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D84A1B"/>
+      <stop offset="1" stop-color="#F7915F"/>
+    </linearGradient>
+    <linearGradient id="tab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D6D6D6"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+      <feOffset dy="6" result="b"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.28"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dy="3" result="b"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="tileClip">
+      <rect x="40" y="36" width="432" height="432" rx="64"/>
+    </clipPath>
+  </defs>
+
+  <!-- Calendar tile, Yaru flip-clock style -->
+  <rect x="40" y="36" width="432" height="432" rx="64" fill="url(#tile)" filter="url(#shadow)"/>
+  <g clip-path="url(#tileClip)">
+    <rect x="40" y="36" width="432" height="216" fill="#000" opacity="0.07"/>
+    <rect x="40" y="36" width="432" height="3" fill="#fff" opacity="0.35"/>
+  </g>
+  <rect x="40" y="250" width="432" height="3" fill="#000" opacity="0.18"/>
+  <rect x="40" y="253" width="432" height="2" fill="#fff" opacity="0.18"/>
+
+  <!-- Side tabs -->
+  <rect x="28" y="214" width="20" height="76" rx="5" fill="url(#tab)" filter="url(#soft)"/>
+  <rect x="464" y="214" width="20" height="76" rx="5" fill="url(#tab)" filter="url(#soft)"/>
+
+  <!-- Day number in Devanagari -->
+  <text x="222" y="335" text-anchor="middle" font-family="Noto Sans Devanagari" font-size="230"
+        fill="#FFFFFF" fill-opacity="0.97">२२</text>
+
+  <!-- Nepal flag, bottom-right. Geometry from the official construction
+       (Constitution of Nepal, Schedule 1), via Wikimedia's Flag_of_Nepal.svg. -->
+  <g transform="translate(386.75 318) scale(1.65)" filter="url(#soft)">
+    <path id="np-outline" d="M -15,37.5735931288 h 60 L -15,0 v 80 h 60 L -15,20 z"
+          fill="#fff" stroke="#fff" stroke-width="11" stroke-linejoin="miter" stroke-miterlimit="6"/>
+    <use xlink:href="#np-shape" stroke="#003893" stroke-width="5.165"/>
+    <path id="np-shape" d="M -15,37.5735931288 h 60 L -15,0 v 80 h 60 L -15,20 z" fill="#DC143C"/>
+    <g fill="#fff">
+      <!-- Moon: crescent with a rayed disc -->
+      <path d="M -11.9502769431,23.4834957055 A 12.8400974233,12.8400974233 0 0,0 11.9502769431,23.4834957055
+               A 11.9502769431 11.9502769431 0 0,1 -11.9502769431,23.4834957055"/>
+      <g transform="translate(0 29.045) scale(5.56106)">
+        <circle r="1"/>
+        <g id="np-moon-rays6">
+          <g id="np-moon-rays3">
+            <path id="np-moon-ray" d="M 0.195090322016,-0.980785280403 L 0,-1.388784109750 L -0.195090322016,-0.980785280403"
+                  transform="rotate(11.25)"/>
+            <use xlink:href="#np-moon-ray" transform="rotate(22.5)"/>
+            <use xlink:href="#np-moon-ray" transform="rotate(45)"/>
+          </g>
+          <use xlink:href="#np-moon-rays3" transform="rotate(67.5)"/>
+        </g>
+        <use xlink:href="#np-moon-rays6" transform="scale(-1 1)"/>
+      </g>
+      <!-- Sun: twelve rays -->
+      <g transform="matrix(8.1434 0 0 8.1434 0 58.787)">
+        <circle r="1"/>
+        <g id="np-sun-rays4">
+          <g id="np-sun-rays2">
+            <path id="np-sun-ray" d="M 0.258819045103,0.965925826289 L 0,1.576749285537 L -0.258819045103,0.965925826289"/>
+            <use xlink:href="#np-sun-ray" transform="rotate(180)"/>
+          </g>
+          <use xlink:href="#np-sun-rays2" transform="rotate(90)"/>
+        </g>
+        <use xlink:href="#np-sun-rays4" transform="rotate(30)"/>
+        <use xlink:href="#np-sun-rays4" transform="rotate(60)"/>
+      </g>
+    </g>
+  </g>
+</svg>
